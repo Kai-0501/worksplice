@@ -1,3 +1,5 @@
+Read **FOR_AGENTS.md** first. That file is the Worksplice project brief for coding agents.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 # This is NOT the Next.js you know
