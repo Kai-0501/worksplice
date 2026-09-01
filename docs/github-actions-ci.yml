@@ -1,0 +1,27 @@
+# Copy to .github/workflows/ci.yml once the GitHub token has the `workflow` scope.
+# Creating workflow files via a contents-only token is rejected by GitHub.
+
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: node scripts/restore-lockfile.mjs
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run build
+      - run: npm run security
