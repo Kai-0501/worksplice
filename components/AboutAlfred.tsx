@@ -24,7 +24,7 @@ export function AboutAlfred() {
 
         <div>
           <p className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-muted-foreground">
-            About {siteConfig.founder}
+            About Alfred
           </p>
           <h2
             id="about-heading"
@@ -33,19 +33,19 @@ export function AboutAlfred() {
             You work with the person who builds it.
           </h2>
           <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground">
-            {siteConfig.founder} builds small AI and workflow automation systems
+            Alfred builds small AI and workflow automation systems
             for Singapore B2B teams. He focuses on reducing repetitive
             administrative work around sales, operations and internal
             coordination.
           </p>
           <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground">
-            Worksplice is not a large delivery team. Clients work with{" "}
-            {siteConfig.founder} directly.
+            Worksplice is not a large delivery team. Clients work with Alfred
+            directly.
           </p>
           <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm">
             <li>
               <EmailLink className="underline-offset-4 hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50">
-                Email {siteConfig.founder}
+                Email Alfred
               </EmailLink>
             </li>
             <li>
