@@ -2,6 +2,8 @@
 
 Canonical GitHub repository: [https://github.com/Kai-0501/worksplice](https://github.com/Kai-0501/worksplice)
 
+Coding agents should start from [FOR_AGENTS.md](FOR_AGENTS.md).
+
 Public website for **Worksplice**, a Singapore-based builder of small AI automations for repetitive B2B workflows. Alfred is the founder and the person clients work with directly.
 
 This is a single-page, static-first Next.js site. It is meant to help outbound prospects check who Worksplice is, what the work looks like, and how to reply — not to run a customer portal or live AI.
@@ -11,9 +13,12 @@ This is a single-page, static-first Next.js site. It is meant to help outbound p
 Requirements: Node.js 22 or later, npm.
 
 ```bash
+node scripts/restore-lockfile.mjs
 npm ci
 npm run dev
 ```
+
+If `package-lock.json` is already present, the restore script is a no-op. GitHub keeps the lockfile as `package-lock.json.part*` so clones stay under API size limits; the script concatenates them.
 
 Open [http://localhost:43180](http://localhost:43180).
 
