@@ -13,10 +13,7 @@ export const siteConfig = {
     "siteConfig.linkedin",
   ),
   github: requireHttpsUrl("https://github.com/Kai-0501", "siteConfig.github"),
-  domain: requireHttpsUrl(
-    "https://temporary-zippy-azure-rii33vm.vercel.app",
-    "siteConfig.domain",
-  ),
+  domain: requireHttpsUrl("https://worksplice.site", "siteConfig.domain"),
   emailSubject: "Workflow automation idea",
   typicalWork: [
     "RFQ intake",
