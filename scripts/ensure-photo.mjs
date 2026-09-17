@@ -20,6 +20,8 @@ if (existsSync(photo)) {
 let b64 = "";
 if (existsSync(encoded)) {
   b64 = readFileSync(encoded, "utf8");
+} else if (!existsSync(imagesDir)) {
+  process.exit(0);
 } else {
   const parts = readdirSync(imagesDir)
     .filter((name) => name.startsWith("alfred.jpg.b64.part"))
