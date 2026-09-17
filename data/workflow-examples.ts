@@ -13,7 +13,7 @@ export const workflowExamples: WorkflowExample[] = [
       "Incoming enquiry",
       "Requirements extracted",
       "Missing information flagged",
-      "Quotation record prepared",
+      "Clarification prepared for review",
     ],
     outcome:
       "Less manual reading, copying and chasing before quotation work begins.",

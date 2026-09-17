@@ -28,11 +28,11 @@ export const siteConfig = {
 } as const;
 
 export const navItems = [
-  { href: "#examples", label: "Examples" },
-  { href: "#demo", label: "Demo" },
-  { href: "#how-it-works", label: "How it works" },
-  { href: "#about", label: "About" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#examples", label: "Examples" },
+  { href: "/demo/rfq-intake", label: "Demo" },
+  { href: "/#how-it-works", label: "How it works" },
+  { href: "/#about", label: "About" },
+  { href: "/#contact", label: "Contact" },
 ] as const;
 
 export function getMailtoHref(subject: string = siteConfig.emailSubject): string {

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import type { MouseEvent } from "react";
 
 import { navItems, siteConfig } from "@/lib/site-config";
@@ -12,25 +13,25 @@ export function Navigation() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/80 bg-background/85 backdrop-blur-md">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-5 py-3 sm:px-8">
-        <a
-          href="#top"
+        <Link
+          href="/#top"
           className="font-heading text-lg tracking-tight text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
         >
           {siteConfig.name}
-        </a>
+        </Link>
 
         <nav
           className="hidden items-center gap-7 text-sm text-muted-foreground md:flex"
           aria-label="Primary"
         >
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               className="transition-colors hover:text-foreground focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -49,13 +50,13 @@ export function Navigation() {
             <ul className="flex flex-col">
               {navItems.map((item) => (
                 <li key={item.href}>
-                  <a
+                  <Link
                     href={item.href}
                     className="block rounded-lg px-3 py-2.5 text-base text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
                     onClick={closeMobileMenu}
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

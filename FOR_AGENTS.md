@@ -6,7 +6,7 @@ This repository is the full Worksplice public website. Clone it and work from th
 
 ## Product
 
-- Single-page credibility site for Singapore B2B outbound sales.
+- Homepage plus a reusable buyer proof at `/demo/rfq-intake`.
 - Brand name: **Worksplice**.
 - Founder display name in all UI copy: **Alfred** (`lib/site-config.ts` → `founder`).
 - GitHub account remains `Kai-0501`. Do not put “Kai” in customer-facing copy.
@@ -34,7 +34,8 @@ npm start
 | --- | --- |
 | Name, email, LinkedIn, domain | `lib/site-config.ts` |
 | About / photo | `components/AboutAlfred.tsx`, `public/images/` |
-| RFQ demo | `data/rfq-demo.ts`, `components/WorkflowDemo.tsx` |
+| RFQ intake proof | `data/demo-001-rfq-intake.ts`, `components/demo/RfqIntakeDemo.tsx`, `app/demo/rfq-intake/page.tsx` |
+| Homepage demo teaser | `components/WorkflowDemo.tsx` |
 | Example cards | `data/workflow-examples.ts` |
 | Security headers | `lib/security-headers.ts` |
 

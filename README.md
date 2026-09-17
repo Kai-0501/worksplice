@@ -6,7 +6,7 @@ Coding agents should start from [FOR_AGENTS.md](FOR_AGENTS.md).
 
 Public website for **Worksplice**, a Singapore-based builder of small AI automations for repetitive B2B workflows. Alfred is the founder and the person clients work with directly.
 
-This is a single-page, static-first Next.js site. It is meant to help outbound prospects check who Worksplice is, what the work looks like, and how to reply — not to run a customer portal or live AI.
+This is a static-first Next.js site with a homepage and a reusable RFQ intake proof at `/demo/rfq-intake`. It is meant to help outbound prospects check who Worksplice is, what the work looks like, and how to reply — not to run a customer portal or live AI.
 
 ## Local development
 
@@ -34,6 +34,7 @@ npm start
 ```bash
 npm run lint
 npm run typecheck
+npm test
 npm run build
 npm start
 npm run security
@@ -84,9 +85,19 @@ The founder display name is **Alfred**. Keep GitHub account URLs pointing at `Ka
 - Example cards: `data/workflow-examples.ts`
 - How-it-works steps: `data/how-it-works.ts`
 - Principles: `data/principles.ts`
-- RFQ demo enquiry, stages, and output fields: `data/rfq-demo.ts`
+- RFQ intake proof copy: `data/demo-001-rfq-intake.ts`
+- RFQ intake proof UI: `components/demo/RfqIntakeDemo.tsx`, route `app/demo/rfq-intake/page.tsx`
 
-The RFQ demo is entirely simulated in the browser. It does not call an AI API.
+The RFQ intake demo is entirely simulated in the browser. It does not call an AI API.
+
+Deterministic recording states:
+
+- `/demo/rfq-intake`
+- `/demo/rfq-intake?step=idle|checking|flags|draft|approved`
+- `/demo/rfq-intake?play=1`
+- `/demo/rfq-intake?demo=record&play=1`
+
+Open [http://localhost:43180/demo/rfq-intake](http://localhost:43180/demo/rfq-intake) after `npm start`.
 
 ## Analytics
 
