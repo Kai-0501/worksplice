@@ -8,6 +8,7 @@
     "start": "next start --port 43180",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test lib/demo/rfq-intake-state.test.mts",
     "security": "npm audit --omit=dev && bash scripts/security-check.sh"
   },
   "dependencies": {
