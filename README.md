@@ -2,7 +2,16 @@
 
 **Live site:** [www.worksplice.site](https://www.worksplice.site) · **RFQ intake demo:** [www.worksplice.site/demo/rfq-intake](https://www.worksplice.site/demo/rfq-intake)
 
-Worksplice builds small, practical automations for repetitive B2B sales and operations admin. It is a bootstrapped Singapore startup founded in 2026, run by its founder, who works with each business directly.
+Worksplice builds small, practical automations for repetitive B2B sales and operations admin. It is a bootstrapped, early-stage Singapore startup founded in 2026, run by its founder, who works with each business directly.
+
+## Who is behind Worksplice
+
+- **Founder:** Alfred Ling (legal name Ling Kai Teng Alfred), also known as Kai. One person, not two.
+- **Founder / startup-program contact:** [kai@worksplice.site](mailto:kai@worksplice.site)
+- **Sales / outreach contact:** [alfredling@worksplice.site](mailto:alfredling@worksplice.site)
+- **LinkedIn:** [sg.linkedin.com/in/alfred-ling-5a9880200](https://sg.linkedin.com/in/alfred-ling-5a9880200)
+- **GitHub:** [Kai-0501](https://github.com/Kai-0501) · this repo: [Kai-0501/worksplice](https://github.com/Kai-0501/worksplice)
+- **Website:** [www.worksplice.site](https://www.worksplice.site) · Singapore · founded 2026
 
 Coding agents should start from [FOR_AGENTS.md](FOR_AGENTS.md).
 
@@ -26,9 +35,10 @@ Singapore B2B teams with repetitive sales and operations admin: RFQ intake, quot
 
 ## Current status
 
-- Early stage. No customers, revenue or outside funding to report yet.
+- Early stage and bootstrapped. No customers, revenue or outside funding to report yet. Worksplice does not claim to be an incorporated or registered company on this site.
 - This repository is the public website. The RFQ demo at `/demo/rfq-intake` is a fictional, scripted preview that runs entirely in the browser. It does not call an AI model.
-- Worksplice uses Claude and Claude Code in its own build workflow and is starting to use Claude Cowork for prospecting. Direct Claude integration for RFQ intake is on the roadmap, to be added once it is appropriate for a real pilot.
+- Worksplice uses Claude Code to build this site and is starting to use Claude Cowork for prospecting and internal admin.
+- Direct Claude API integration is planned, not currently live. Nothing in this repository calls the Claude API or any other AI model. It is on the roadmap for RFQ intake, to be added once it is appropriate for a real pilot.
 
 ## Website
 
@@ -90,15 +100,16 @@ Security headers, including CSP and HSTS, are set in `lib/security-headers.ts` v
 
 Edit `lib/site-config.ts`:
 
-- `email`
-- `linkedin`
-- `github`
+- `email` — sales / outreach (used by the public Email links)
+- `founderEmail` — founder / startup-program contact
+- `linkedin`, `github`, `githubRepo`
 - `domain` — canonical / Open Graph base URL
-- `founder`, `location`, and short copy constants
+- `founder`, `founderLegalName`, `founderNickname`, `location`, `founded`, and short copy constants
+- `getStructuredData()` — the Schema.org JSON-LD (Organization + Person) rendered on the homepage; it reads from the fields above
 
 External URLs must be `https`.
 
-The founder display name is set once in `siteConfig.founder`; components read it from there. Keep GitHub account URLs pointing at `Kai-0501` unless that username changes.
+The founder display name is set once in `siteConfig.founder` (Alfred Ling); components read it from there. SEO files: `app/robots.ts` and `app/sitemap.ts`. Keep GitHub account URLs pointing at `Kai-0501` unless that username changes.
 
 ## Where to replace images
 

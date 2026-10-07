@@ -3,7 +3,7 @@ import { join } from "node:path";
 
 import Image from "next/image";
 
-import { EmailLink, ExternalLink, LinkedInLink } from "@/components/TrackedLink";
+import { ExternalLink, LinkedInLink } from "@/components/TrackedLink";
 import { siteConfig } from "@/lib/site-config";
 
 const founderPhoto = "/images/alfred.jpg";
@@ -36,7 +36,7 @@ export function AboutFounder() {
 
         <div>
           <p className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-muted-foreground">
-            About {siteConfig.founder}
+            About the founder
           </p>
           <h2
             id="about-heading"
@@ -45,24 +45,28 @@ export function AboutFounder() {
             You work with the person who builds it.
           </h2>
           <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground">
-            {siteConfig.founder} builds small AI and workflow automation systems
-            for Singapore B2B teams. He focuses on reducing repetitive
-            administrative work around sales, operations and internal
-            coordination.
+            Founded by {siteConfig.founder} ({siteConfig.founderLegalName}), also
+            known as {siteConfig.founderNickname}. He builds small AI and
+            workflow automation systems for Singapore B2B teams, focused on
+            reducing repetitive administrative work around sales, operations
+            and internal coordination.
           </p>
           <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground">
             Worksplice is a bootstrapped {siteConfig.location} startup, founded
-            in {siteConfig.founded}. It is not a large delivery team. Clients
-            work with {siteConfig.founder} directly.
+            in {siteConfig.founded} and currently early-stage. It is not a large
+            delivery team. Clients work with {siteConfig.founder} directly.
           </p>
           <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground">
             Worksplice uses Claude and Claude Code in its own build workflow.
           </p>
           <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm">
             <li>
-              <EmailLink className="underline-offset-4 hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50">
-                Email {siteConfig.founder}
-              </EmailLink>
+              <a
+                href={`mailto:${siteConfig.founderEmail}`}
+                className="underline-offset-4 hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+              >
+                {siteConfig.founderEmail}
+              </a>
             </li>
             <li>
               <LinkedInLink className="underline-offset-4 hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50">
@@ -75,6 +79,14 @@ export function AboutFounder() {
                 className="underline-offset-4 hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
               >
                 GitHub
+              </ExternalLink>
+            </li>
+            <li>
+              <ExternalLink
+                href={siteConfig.githubRepo}
+                className="underline-offset-4 hover:underline focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+              >
+                Worksplice on GitHub
               </ExternalLink>
             </li>
           </ul>

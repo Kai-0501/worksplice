@@ -8,10 +8,11 @@ This repository is the full Worksplice public website. Clone it and work from th
 
 - Homepage plus a reusable buyer proof at `/demo/rfq-intake`.
 - Brand name: **Worksplice**.
-- Founder display name comes only from `lib/site-config.ts` → `founder`. Do not hardcode it in components.
-- Bootstrapped Singapore startup, founded 2026 (`siteConfig.founded`). Do not claim customers, revenue, funding, or live AI integrations.
+- Founder display name comes only from `lib/site-config.ts` → `founder` ("Alfred Ling"; legal name Ling Kai Teng Alfred; nickname Kai). Alfred and Kai are the same person. Do not hardcode names in components.
+- Bootstrapped, early-stage Singapore startup, founded 2026 (`siteConfig.founded`). Do not claim customers, revenue, funding, incorporation, or live AI integrations. Direct Claude API integration is planned, not live.
 - GitHub account remains `Kai-0501`.
-- Contact: `alfredling@worksplice.site`, LinkedIn `https://www.linkedin.com/in/alfred-ling-5a9880200`.
+- Contact: `kai@worksplice.site` for founder / startup-program enquiries, `alfredling@worksplice.site` for sales / outreach. LinkedIn `https://sg.linkedin.com/in/alfred-ling-5a9880200`.
+- Schema.org JSON-LD lives in `getStructuredData()` in `lib/site-config.ts`; keep it consistent with the visible page.
 - No auth, database, AI APIs, forms, or environment variables.
 
 ## Stack

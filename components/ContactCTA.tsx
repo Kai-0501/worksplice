@@ -30,9 +30,33 @@ export function ContactCTA() {
           </EmailLink>
           <LinkedInLink className={outlineCtaClass}>LinkedIn</LinkedInLink>
         </div>
-        <p className="mt-6 font-mono text-xs text-muted-foreground">
-          {siteConfig.email} · {siteConfig.location}
-        </p>
+        <dl className="mt-6 space-y-1 font-mono text-xs text-muted-foreground">
+          <div className="flex flex-wrap gap-x-2">
+            <dt>Sales / outreach:</dt>
+            <dd>
+              <a
+                href={`mailto:${siteConfig.email}`}
+                className="underline-offset-4 hover:underline"
+              >
+                {siteConfig.email}
+              </a>
+            </dd>
+          </div>
+          <div className="flex flex-wrap gap-x-2">
+            <dt>Founder / program enquiries:</dt>
+            <dd>
+              <a
+                href={`mailto:${siteConfig.founderEmail}`}
+                className="underline-offset-4 hover:underline"
+              >
+                {siteConfig.founderEmail}
+              </a>
+            </dd>
+          </div>
+          <div>
+            Worksplice · {siteConfig.location} · Founded {siteConfig.founded}
+          </div>
+        </dl>
       </div>
     </section>
   );
