@@ -20,7 +20,7 @@ This is a public, static marketing site. Keep the attack surface small.
 - Contact is a `mailto:` link. The site does not send email.
 - Analytics `track()` is a no-op until a provider is added.
 - No environment variables are required.
-- Vulnerability reports: `/.well-known/security.txt` → `lingkaiteng@gmail.com`.
+- Vulnerability reports: `/.well-known/security.txt` → `alfredling@worksplice.site`.
 
 ## Checks
 

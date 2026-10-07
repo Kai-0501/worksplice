@@ -26,7 +26,7 @@ export function ContactCTA() {
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
           <EmailLink className={primaryCtaClass}>
-            Email Alfred
+            Email {siteConfig.founder}
           </EmailLink>
           <LinkedInLink className={outlineCtaClass}>LinkedIn</LinkedInLink>
         </div>
