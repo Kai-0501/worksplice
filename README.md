@@ -1,12 +1,38 @@
-# Worksplice website
+# Worksplice
 
-Canonical GitHub repository: [https://github.com/Kai-0501/worksplice](https://github.com/Kai-0501/worksplice)
+**Live site:** [www.worksplice.site](https://www.worksplice.site) · **RFQ intake demo:** [www.worksplice.site/demo/rfq-intake](https://www.worksplice.site/demo/rfq-intake)
+
+Worksplice builds small, practical automations for repetitive B2B sales and operations admin. It is a bootstrapped Singapore startup founded in 2026, run by its founder, who works with each business directly.
 
 Coding agents should start from [FOR_AGENTS.md](FOR_AGENTS.md).
 
-Public website for **Worksplice**, a Singapore-based builder of small AI automations for repetitive B2B workflows. Alfred is the founder and the person clients work with directly.
+## Focus
 
-This is a static-first Next.js site with a homepage and a reusable RFQ intake proof at `/demo/rfq-intake`. It is meant to help outbound prospects check who Worksplice is, what the work looks like, and how to reply — not to run a customer portal or live AI.
+Singapore B2B teams with repetitive sales and operations admin: RFQ intake, quotation prep, CRM updates and follow-ups. RFQ intake for suppliers is the first worked example. Worksplice picks one repetitive workflow, automates the routine part around the tools the team already uses, and keeps it only if it saves real time.
+
+## RFQ workflow concept
+
+1. An RFQ arrives by email.
+2. Worksplice extracts the key fields (customer, part, quantity, material, finish, drawing, delivery, deadline) into an intake checklist.
+3. Missing or ambiguous information is flagged, e.g. no required delivery date or no material-certification requirement.
+4. A clarification email is drafted for the customer.
+5. A person chooses **Approve**, **Edit** or **Discard**. Nothing is sent before that.
+
+## Human-in-the-loop boundaries
+
+- Pricing, commercial terms, engineering judgement and customer commitments stay with people.
+- Nothing goes to a customer without explicit human approval.
+- Worksplice does not write to the ERP; the ERP remains the system of record.
+
+## Current status
+
+- Early stage. No customers, revenue or outside funding to report yet.
+- This repository is the public website. The RFQ demo at `/demo/rfq-intake` is a fictional, scripted preview that runs entirely in the browser. It does not call an AI model.
+- Worksplice uses Claude and Claude Code in its own build workflow and is starting to use Claude Cowork for prospecting. Direct Claude integration for RFQ intake is on the roadmap, to be added once it is appropriate for a real pilot.
+
+## Website
+
+Static-first Next.js site: a homepage plus the reusable RFQ intake proof. It helps outbound prospects check who Worksplice is, what the work looks like, and how to reply. It is not a customer portal and does not run live AI.
 
 ## Local development
 
@@ -72,11 +98,11 @@ Edit `lib/site-config.ts`:
 
 External URLs must be `https`.
 
-The founder display name is **Alfred**. Keep GitHub account URLs pointing at `Kai-0501` unless that username changes.
+The founder display name is set once in `siteConfig.founder`; components read it from there. Keep GitHub account URLs pointing at `Kai-0501` unless that username changes.
 
 ## Where to replace images
 
-- Founder headshot: `public/images/alfred.jpg` (committed as `alfred.jpg.b64` for GitHub-friendly text; `npm run build` restores the JPEG if needed)
+- Founder headshot: `public/images/alfred.jpg` (optionally committed as `alfred.jpg.b64` for GitHub-friendly text; `npm run build` restores the JPEG if needed). If no photo is present, the About section renders without one.
 - Favicon: `app/icon.svg`
 - Social share image: `app/opengraph-image.tsx`
 

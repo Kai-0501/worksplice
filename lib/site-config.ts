@@ -7,13 +7,14 @@ export const siteConfig = {
   description:
     "Worksplice builds small AI workflow automations that reduce repetitive sales and operational admin for Singapore B2B teams.",
   location: "Singapore",
-  email: requireEmail("lingkaiteng@gmail.com", "siteConfig.email"),
+  founded: 2026,
+  email: requireEmail("alfredling@worksplice.site", "siteConfig.email"),
   linkedin: requireHttpsUrl(
     "https://www.linkedin.com/in/alfred-ling-5a9880200",
     "siteConfig.linkedin",
   ),
   github: requireHttpsUrl("https://github.com/Kai-0501", "siteConfig.github"),
-  domain: requireHttpsUrl("https://worksplice.site", "siteConfig.domain"),
+  domain: requireHttpsUrl("https://www.worksplice.site", "siteConfig.domain"),
   emailSubject: "Workflow automation idea",
   typicalWork: [
     "RFQ intake",

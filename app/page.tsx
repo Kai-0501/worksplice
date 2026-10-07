@@ -1,4 +1,4 @@
-import { AboutAlfred } from "@/components/AboutAlfred";
+import { AboutFounder } from "@/components/AboutFounder";
 import { ContactCTA } from "@/components/ContactCTA";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
@@ -18,7 +18,7 @@ export default function Home() {
         <WorkflowDemo />
         <HowItWorks />
         <Principles />
-        <AboutAlfred />
+        <AboutFounder />
         <ContactCTA />
       </main>
       <Footer />
