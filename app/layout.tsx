@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 
-import { siteConfig } from "@/lib/site-config";
+import { homeTitle, siteConfig } from "@/lib/site-config";
 
 import "./globals.css";
 
@@ -23,13 +23,13 @@ const instrument = Instrument_Serif({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.domain),
-  title: "Worksplice | AI Workflow Automation for Singapore B2B Teams",
+  title: homeTitle,
   description: siteConfig.description,
   alternates: {
-    canonical: "/",
+    canonical: siteConfig.domain,
   },
   openGraph: {
-    title: "Worksplice | AI Workflow Automation for Singapore B2B Teams",
+    title: homeTitle,
     description: siteConfig.description,
     url: siteConfig.domain,
     siteName: siteConfig.name,
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Worksplice | AI Workflow Automation for Singapore B2B Teams",
+    title: homeTitle,
     description: siteConfig.description,
   },
   robots: {

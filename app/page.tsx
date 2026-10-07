@@ -7,10 +7,17 @@ import { Navigation } from "@/components/Navigation";
 import { Principles } from "@/components/Principles";
 import { WorkflowDemo } from "@/components/WorkflowDemo";
 import { WorkflowExamples } from "@/components/WorkflowExamples";
+import { getStructuredData } from "@/lib/site-config";
 
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(getStructuredData()).replace(/</g, "\\u003c"),
+        }}
+      />
       <Navigation />
       <main id="main">
         <Hero />
