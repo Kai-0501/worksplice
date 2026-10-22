@@ -9,6 +9,7 @@ import {
   rfqIntakeFields,
   rfqIntakeFlags,
 } from "@/data/demo-001-rfq-intake";
+import { EmailLink } from "@/components/TrackedLink";
 import { AnalyticsEvent, track } from "@/lib/analytics";
 import { outlineCtaClass, primaryCtaClass } from "@/lib/cta-classes";
 import {
@@ -25,6 +26,7 @@ import {
   shouldShowDraft,
   shouldShowFlags,
 } from "@/lib/demo/rfq-intake-state";
+import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
 function prefersReducedMotion(): boolean {
@@ -508,6 +510,15 @@ function FinalStatus({ snapshot }: { snapshot: DemoSnapshot }) {
         <>
           <p className="mt-1.5 text-muted-foreground">{rfqIntakeCopy.pilot}</p>
           <p className="text-muted-foreground">{rfqIntakeCopy.pilotExtra}</p>
+          <p className="mt-1.5 text-muted-foreground">
+            Want this on your own RFQs?{" "}
+            <EmailLink
+              subject={siteConfig.teardownSubject}
+              className="text-foreground underline underline-offset-4"
+            >
+              Get a free teardown
+            </EmailLink>
+          </p>
         </>
       ) : null}
     </div>

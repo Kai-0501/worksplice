@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 
+import { DemoCTA } from "@/components/DemoCTA";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
 import {
@@ -37,6 +38,7 @@ export default function RfqIntakeDemoPage() {
         <Suspense fallback={<RfqIntakeDemoFallback />}>
           <RfqIntakeDemo />
         </Suspense>
+        <DemoCTA />
       </main>
       <Footer />
     </>

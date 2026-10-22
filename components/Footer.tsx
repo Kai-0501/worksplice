@@ -1,4 +1,10 @@
-import { EmailLink, ExternalLink, LinkedInLink } from "@/components/TrackedLink";
+import {
+  CompanyLinkedInLink,
+  EmailLink,
+  ExternalLink,
+  LinkedInLink,
+  WhatsAppLink,
+} from "@/components/TrackedLink";
 import { siteConfig } from "@/lib/site-config";
 
 export function Footer() {
@@ -14,8 +20,14 @@ export function Footer() {
             Email
           </EmailLink>
           <LinkedInLink className="hover:text-foreground focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50">
-            LinkedIn
+            {siteConfig.founder} on LinkedIn
           </LinkedInLink>
+          <CompanyLinkedInLink className="hover:text-foreground focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50">
+            {siteConfig.name} on LinkedIn
+          </CompanyLinkedInLink>
+          <WhatsAppLink className="hover:text-foreground focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50">
+            WhatsApp
+          </WhatsAppLink>
           <ExternalLink
             href={siteConfig.github}
             className="hover:text-foreground focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"

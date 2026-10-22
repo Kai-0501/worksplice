@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { HowItWorks } from "@/components/HowItWorks";
 import { Navigation } from "@/components/Navigation";
+import { PilotOffer } from "@/components/PilotOffer";
 import { Principles } from "@/components/Principles";
 import { WorkflowDemo } from "@/components/WorkflowDemo";
 import { WorkflowExamples } from "@/components/WorkflowExamples";
@@ -24,6 +25,7 @@ export default function Home() {
         <WorkflowExamples />
         <WorkflowDemo />
         <HowItWorks />
+        <PilotOffer />
         <Principles />
         <AboutFounder />
         <ContactCTA />

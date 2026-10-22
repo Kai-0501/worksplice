@@ -7,6 +7,7 @@ export const AnalyticsEvent = {
   RFQ_INTAKE_DEMO_APPROVED: "rfq_intake_demo_approved",
   EMAIL_CTA_CLICKED: "email_cta_clicked",
   LINKEDIN_CLICKED: "linkedin_clicked",
+  WHATSAPP_CLICKED: "whatsapp_clicked",
 } as const;
 
 export type AnalyticsEventName =

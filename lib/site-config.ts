@@ -18,6 +18,10 @@ export const siteConfig = {
     "https://sg.linkedin.com/in/alfred-ling-5a9880200",
     "siteConfig.linkedin",
   ),
+  linkedinCompany: requireHttpsUrl(
+    "https://www.linkedin.com/company/worksplice",
+    "siteConfig.linkedinCompany",
+  ),
   github: requireHttpsUrl("https://github.com/Kai-0501", "siteConfig.github"),
   githubRepo: requireHttpsUrl(
     "https://github.com/Kai-0501/worksplice",
@@ -25,6 +29,15 @@ export const siteConfig = {
   ),
   domain: requireHttpsUrl("https://www.worksplice.site", "siteConfig.domain"),
   emailSubject: "Workflow automation idea",
+  teardownSubject: "RFQ teardown",
+  teardownDays: 2,
+  pilotPrice: "S$1,200",
+  whatsapp: requireHttpsUrl(
+    `https://wa.me/6583969421?text=${encodeURIComponent(
+      "Hi Alfred, I saw Worksplice and have a workflow to show you.",
+    )}`,
+    "siteConfig.whatsapp",
+  ),
   typicalWork: [
     "RFQ intake",
     "Quotation preparation",
@@ -41,6 +54,7 @@ export const navItems = [
   { href: "/#examples", label: "Examples" },
   { href: "/demo/rfq-intake", label: "Demo" },
   { href: "/#how-it-works", label: "How it works" },
+  { href: "/#pilot", label: "Pilot" },
   { href: "/#about", label: "About" },
   { href: "/#contact", label: "Contact" },
 ] as const;
@@ -83,7 +97,7 @@ export function getStructuredData() {
         },
         areaServed: { "@type": "Country", name: siteConfig.location },
         founder: { "@id": personId },
-        sameAs: [...profiles, siteConfig.githubRepo],
+        sameAs: [siteConfig.linkedinCompany, ...profiles, siteConfig.githubRepo],
       },
       {
         "@type": "Person",

@@ -10,6 +10,7 @@ Worksplice builds small, practical automations for repetitive B2B sales and oper
 - **Founder / startup-program contact:** [kai@worksplice.site](mailto:kai@worksplice.site)
 - **Sales / outreach contact:** [alfredling@worksplice.site](mailto:alfredling@worksplice.site)
 - **LinkedIn:** [sg.linkedin.com/in/alfred-ling-5a9880200](https://sg.linkedin.com/in/alfred-ling-5a9880200)
+- **Worksplice on LinkedIn:** [linkedin.com/company/worksplice](https://www.linkedin.com/company/worksplice)
 - **GitHub:** [Kai-0501](https://github.com/Kai-0501) · this repo: [Kai-0501/worksplice](https://github.com/Kai-0501/worksplice)
 - **Website:** [www.worksplice.site](https://www.worksplice.site) · Singapore · founded 2026
 
@@ -102,7 +103,8 @@ Edit `lib/site-config.ts`:
 
 - `email` — sales / outreach (used by the public Email links)
 - `founderEmail` — founder / startup-program contact
-- `linkedin`, `github`, `githubRepo`
+- `linkedin`, `linkedinCompany`, `whatsapp`, `github`, `githubRepo`
+- `pilotPrice`, `teardownDays`, `teardownSubject` — pilot price and free-teardown offer shown on the homepage and demo
 - `domain` — canonical / Open Graph base URL
 - `founder`, `founderLegalName`, `founderNickname`, `location`, `founded`, and short copy constants
 - `getStructuredData()` — the Schema.org JSON-LD (Organization + Person) rendered on the homepage; it reads from the fields above

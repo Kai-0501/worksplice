@@ -1,4 +1,9 @@
-import { EmailLink, LinkedInLink } from "@/components/TrackedLink";
+import {
+  CompanyLinkedInLink,
+  EmailLink,
+  LinkedInLink,
+  WhatsAppLink,
+} from "@/components/TrackedLink";
 import { outlineCtaClass, primaryCtaClass } from "@/lib/cta-classes";
 import { siteConfig } from "@/lib/site-config";
 
@@ -28,7 +33,7 @@ export function ContactCTA() {
           <EmailLink className={primaryCtaClass}>
             Email {siteConfig.founder}
           </EmailLink>
-          <LinkedInLink className={outlineCtaClass}>LinkedIn</LinkedInLink>
+          <WhatsAppLink className={outlineCtaClass}>WhatsApp</WhatsAppLink>
         </div>
         <dl className="mt-6 space-y-1 font-mono text-xs text-muted-foreground">
           <div className="flex flex-wrap gap-x-2">
@@ -51,6 +56,17 @@ export function ContactCTA() {
               >
                 {siteConfig.founderEmail}
               </a>
+            </dd>
+          </div>
+          <div className="flex flex-wrap gap-x-2">
+            <dt>LinkedIn:</dt>
+            <dd className="flex flex-wrap gap-x-3">
+              <LinkedInLink className="underline-offset-4 hover:underline">
+                {siteConfig.founder}
+              </LinkedInLink>
+              <CompanyLinkedInLink className="underline-offset-4 hover:underline">
+                {siteConfig.name}
+              </CompanyLinkedInLink>
             </dd>
           </div>
           <div>

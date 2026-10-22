@@ -71,6 +71,42 @@ export function LinkedInLink({
   );
 }
 
+export function CompanyLinkedInLink({
+  className,
+  children,
+}: {
+  className?: string;
+  children: ReactNode;
+}) {
+  return (
+    <ExternalLink
+      href={siteConfig.linkedinCompany}
+      className={cn(className)}
+      onClick={() => track(AnalyticsEvent.LINKEDIN_CLICKED, { page: "company" })}
+    >
+      {children}
+    </ExternalLink>
+  );
+}
+
+export function WhatsAppLink({
+  className,
+  children,
+}: {
+  className?: string;
+  children: ReactNode;
+}) {
+  return (
+    <ExternalLink
+      href={siteConfig.whatsapp}
+      className={cn(className)}
+      onClick={() => track(AnalyticsEvent.WHATSAPP_CLICKED)}
+    >
+      {children}
+    </ExternalLink>
+  );
+}
+
 export function ExternalLink({
   href,
   className,

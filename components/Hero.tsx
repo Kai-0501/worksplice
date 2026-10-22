@@ -38,8 +38,11 @@ export function Hero() {
             >
               See how it works
             </TrackedLink>
-            <EmailLink className={outlineCtaClass}>
-              Show me your workflow
+            <EmailLink
+              subject={siteConfig.teardownSubject}
+              className={outlineCtaClass}
+            >
+              Get a free RFQ teardown
             </EmailLink>
           </div>
         </div>
