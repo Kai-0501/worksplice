@@ -52,12 +52,9 @@ export function AboutFounder() {
             and internal coordination.
           </p>
           <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground">
-            Worksplice is a bootstrapped {siteConfig.location} startup, founded
+            Worksplice is a {siteConfig.location} startup, founded
             in {siteConfig.founded} and currently early-stage. It is not a large
             delivery team. Clients work with {siteConfig.founder} directly.
-          </p>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground">
-            Worksplice uses Claude and Claude Code in its own build workflow.
           </p>
           <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm">
             <li>

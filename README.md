@@ -2,7 +2,7 @@
 
 **Live site:** [www.worksplice.site](https://www.worksplice.site) · **RFQ intake demo:** [www.worksplice.site/demo/rfq-intake](https://www.worksplice.site/demo/rfq-intake)
 
-Worksplice builds small, practical automations for repetitive B2B sales and operations admin. It is a bootstrapped, early-stage Singapore startup founded in 2026, run by its founder, who works with each business directly.
+Worksplice builds small, practical automations for repetitive B2B sales and operations admin. It is an early-stage Singapore startup founded in 2026, run by its founder, who works with each business directly.
 
 ## Who is behind Worksplice
 
@@ -36,10 +36,9 @@ Singapore B2B teams with repetitive sales and operations admin: RFQ intake, quot
 
 ## Current status
 
-- Early stage and bootstrapped. No customers, revenue or outside funding to report yet. Worksplice does not claim to be an incorporated or registered company on this site.
+- Early stage. No customers, revenue or outside funding to report yet. Worksplice does not claim to be an incorporated or registered company on this site.
 - This repository is the public website. The RFQ demo at `/demo/rfq-intake` is a fictional, scripted preview that runs entirely in the browser. It does not call an AI model.
-- Worksplice uses Claude Code to build this site and is starting to use Claude Cowork for prospecting and internal admin.
-- Direct Claude API integration is planned, not currently live. Nothing in this repository calls the Claude API or any other AI model. It is on the roadmap for RFQ intake, to be added once it is appropriate for a real pilot.
+- Direct AI model integration is planned, not currently live. Nothing in this repository calls an AI model. It is on the roadmap for RFQ intake, to be added once it is appropriate for a real pilot.
 
 ## Website
 

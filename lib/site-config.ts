@@ -7,7 +7,7 @@ export const siteConfig = {
   founderNickname: "Kai",
   tagline: "Small AI automations for repetitive B2B workflows.",
   description:
-    "Bootstrapped Singapore startup, founded 2026. Worksplice builds small AI workflow automations for repetitive B2B sales and operations admin.",
+    "Singapore startup, founded 2026. Worksplice builds small AI workflow automations for repetitive B2B sales and operations admin.",
   location: "Singapore",
   founded: 2026,
   // Sales / outreach mailbox. Used by the public "Email" call-to-action links.
