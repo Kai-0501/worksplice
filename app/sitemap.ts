@@ -6,5 +6,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: siteConfig.domain, priority: 1 },
     { url: `${siteConfig.domain}/demo/rfq-intake`, priority: 0.7 },
+    { url: `${siteConfig.domain}/privacy`, priority: 0.3 },
   ];
 }
