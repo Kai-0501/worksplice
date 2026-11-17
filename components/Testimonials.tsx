@@ -18,8 +18,7 @@ export function Testimonials() {
           In their own words.
         </h2>
         <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground">
-          Shared with permission. Names and companies are withheld; outcomes are
-          reported by the speakers.
+          Client testimonials from day-to-day operations.
         </p>
         <ul className="mt-12 grid gap-5 lg:grid-cols-3">
           {testimonials.map((testimonial) => (

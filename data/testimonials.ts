@@ -3,14 +3,14 @@ export const testimonials = [
   {
     id: "industrial-supply",
     quote: "yesterday client sent 6-page spec sheet for Tuas site, Worksplice flagged missing material cert & delivery date straight away. it drafted the clarification email too, just click approve and sent. saved coordinator easily 2 hrs. stays strictly in review queue until we confirm",
-    role: "ops coordinator",
-    industry: "industrial and engineering supply",
+    role: "Ops Coordinator",
+    industry: "Industrial and Engineering Supply",
   },
   {
     id: "civil-subcontractor",
     quote: "it found one HDB substation job last thurs we didn't even see on the portals. normally we skip cuz categorized under general building, but your thing read PDF specs anyway and got the piling keywords. confirm would have missed it if not. saved my guy at least 2 hrs scrolling also",
-    role: "director",
-    industry: "civil subcontractor",
+    role: "Director",
+    industry: "Civil Subcontractor",
   },
   {
     id: "steel-fabrication",
