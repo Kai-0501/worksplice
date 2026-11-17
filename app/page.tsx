@@ -6,6 +6,7 @@ import { HowItWorks } from "@/components/HowItWorks";
 import { Navigation } from "@/components/Navigation";
 import { PilotOffer } from "@/components/PilotOffer";
 import { Principles } from "@/components/Principles";
+import { Testimonials } from "@/components/Testimonials";
 import { WorkflowDemo } from "@/components/WorkflowDemo";
 import { WorkflowExamples } from "@/components/WorkflowExamples";
 import { getStructuredData } from "@/lib/site-config";
@@ -24,6 +25,7 @@ export default function Home() {
         <Hero />
         <WorkflowExamples />
         <WorkflowDemo />
+        <Testimonials />
         <HowItWorks />
         <PilotOffer />
         <Principles />
