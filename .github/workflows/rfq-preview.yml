@@ -21,6 +21,7 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run lint
+      - run: npm exec -- next typegen
       - run: npm run typecheck
       - name: Package the production server for the local preview
         shell: pwsh
