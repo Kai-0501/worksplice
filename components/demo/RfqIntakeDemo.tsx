@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import {
@@ -16,6 +16,7 @@ import {
   DEMO_TEST_IDS,
   DEMO_TIMING_MS,
   type DemoSnapshot,
+  canApproveDraft,
   createInitialSnapshot,
   parseDemoStep,
   parsePlay,
@@ -128,7 +129,7 @@ export function RfqIntakeDemo() {
   }, [autoAdvance, play, reduceMotion, snapshot.state]);
 
   useEffect(() => {
-    if (!autoAdvance || !play || snapshot.state !== "draft") {
+    if (!autoAdvance || !play || !canApproveDraft(snapshot)) {
       return;
     }
 
@@ -138,7 +139,7 @@ export function RfqIntakeDemo() {
       track(AnalyticsEvent.RFQ_INTAKE_DEMO_APPROVED);
     }, delay);
     return () => window.clearTimeout(timer);
-  }, [autoAdvance, play, reduceMotion, snapshot.state]);
+  }, [autoAdvance, play, reduceMotion, snapshot]);
 
   function handleCheck() {
     if (snapshot.state !== "idle") {
@@ -158,6 +159,7 @@ export function RfqIntakeDemo() {
   }
 
   function handleApprove() {
+    if (!canApproveDraft(snapshot)) return;
     dispatch({ type: "approve" });
     track(AnalyticsEvent.RFQ_INTAKE_DEMO_APPROVED);
   }
@@ -178,6 +180,7 @@ export function RfqIntakeDemo() {
   return (
     <RfqIntakeDemoView
       snapshot={snapshot}
+      showReviewCue={!record && !play}
       editText={editText}
       onEditTextChange={setEditText}
       onCheck={handleCheck}
@@ -192,6 +195,7 @@ export function RfqIntakeDemo() {
 
 function RfqIntakeDemoView({
   snapshot,
+  showReviewCue = false,
   editText = snapshot.draftText,
   onEditTextChange,
   onCheck,
@@ -202,6 +206,7 @@ function RfqIntakeDemoView({
   onDiscard,
 }: {
   snapshot: DemoSnapshot;
+  showReviewCue?: boolean;
   editText?: string;
   onEditTextChange?: (value: string) => void;
   onCheck?: () => void;
@@ -211,6 +216,7 @@ function RfqIntakeDemoView({
   onSaveEdit?: () => void;
   onDiscard?: () => void;
 }) {
+  const reviewRef = useRef<HTMLElement>(null);
   const idle = snapshot.state === "idle";
   const showChecklist = shouldShowChecklist(snapshot.state);
   const showFlags = shouldShowFlags(snapshot.state);
@@ -243,10 +249,23 @@ function RfqIntakeDemoView({
             data-testid={DEMO_TEST_IDS.checkRfq}
             onClick={onCheck}
             disabled={!idle}
-            className={primaryCtaClass}
+            className={cn(primaryCtaClass, showReviewCue && showActions && "hidden lg:inline-flex")}
           >
             {rfqIntakeCopy.checkCta}
           </button>
+          {showReviewCue && showActions ? (
+            <button
+              type="button"
+              aria-controls="rfq-intake-review"
+              onClick={() => {
+                reviewRef.current?.focus({ preventScroll: true });
+                reviewRef.current?.scrollIntoView({ block: "start" });
+              }}
+              className={cn(primaryCtaClass, "lg:hidden")}
+            >
+              Review ready ↓
+            </button>
+          ) : null}
           <button
             type="button"
             data-testid={DEMO_TEST_IDS.reset}
@@ -280,7 +299,10 @@ function RfqIntakeDemoView({
           <IncomingEnquiry />
 
           <section
-            className="flex min-w-0 flex-col border-t border-border lg:border-t-0 lg:border-l"
+            ref={reviewRef}
+            id="rfq-intake-review"
+            tabIndex={-1}
+            className="flex min-w-0 scroll-mt-24 flex-col border-t border-border lg:border-t-0 lg:border-l"
             aria-label="Intake review"
           >
             <div
@@ -315,13 +337,16 @@ function RfqIntakeDemoView({
               {showActions ? (
                 <div className="flex flex-col gap-2">
                   <p className="text-xs leading-5 text-muted-foreground sm:text-sm sm:leading-6">
-                    {rfqIntakeCopy.humanGate}
+                    {canApproveDraft(snapshot)
+                      ? rfqIntakeCopy.humanGate
+                      : "Edit the empty draft and add a message before approving."}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     <button
                       type="button"
                       data-testid={DEMO_TEST_IDS.approve}
                       onClick={onApprove}
+                      disabled={!canApproveDraft(snapshot)}
                       className={cn(primaryCtaClass, "h-10")}
                     >
                       Approve
@@ -417,7 +442,7 @@ function IntakeChecklist({ checking }: { checking: boolean }) {
             <dt className="font-mono text-[0.65rem] tracking-wide text-muted-foreground uppercase">
               {field.label}
             </dt>
-            <dd className="truncate text-foreground/85">{field.value}</dd>
+            <dd className="wrap-anywhere text-foreground/85">{field.value}</dd>
           </div>
         ))}
       </dl>
@@ -484,7 +509,7 @@ function ClarificationDraft({
           />
         </label>
       ) : (
-        <p className="mt-1.5 rounded-lg border border-border bg-muted/50 px-3 py-2 text-sm leading-5 text-foreground">
+        <p className="mt-1.5 rounded-lg border border-border bg-muted/50 px-3 py-2 text-sm leading-5 whitespace-pre-wrap wrap-anywhere text-foreground">
           {snapshot.draftText}
         </p>
       )}

@@ -88,6 +88,10 @@ export function snapshotFromStep(step: AddressableStep): DemoSnapshot {
   };
 }
 
+export function canApproveDraft(snapshot: DemoSnapshot): boolean {
+  return snapshot.state === "draft" && snapshot.draftText.trim().length > 0;
+}
+
 export function reduceDemo(
   snapshot: DemoSnapshot,
   action: DemoAction,
@@ -109,7 +113,7 @@ export function reduceDemo(
       }
       return { ...snapshot, state: "draft" };
     case "approve":
-      if (snapshot.state !== "draft") {
+      if (!canApproveDraft(snapshot)) {
         return snapshot;
       }
       return { ...snapshot, state: "approved" };

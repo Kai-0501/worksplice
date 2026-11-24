@@ -60,6 +60,25 @@ describe("rfq intake reducer", () => {
     assert.deepEqual(reset, createInitialSnapshot());
   });
 
+  it("rejects approval of empty and whitespace-only edits", () => {
+    for (const text of ["", "   ", "\t\n "]) {
+      const editing = reduceDemo(snapshotFromStep("draft"), { type: "edit" });
+      const review = reduceDemo(editing, { type: "saveEdit", text });
+      assert.equal(review.state, "draft");
+      assert.equal(reduceDemo(review, { type: "approve" }), review);
+    }
+  });
+
+  it("preserves the exact multiline message through review and approval", () => {
+    const text = "Hi Daniel,\n\nPlease confirm the date.\n\nThanks,\nKai\n";
+    const editing = reduceDemo(snapshotFromStep("draft"), { type: "edit" });
+    const review = reduceDemo(editing, { type: "saveEdit", text });
+    assert.deepEqual(review, { state: "draft", draftText: text });
+    const approved = reduceDemo(review, { type: "approve" });
+    assert.deepEqual(approved, { state: "approved", draftText: text });
+    assert.equal(reduceDemo(approved, { type: "approve" }), approved);
+  });
+
   it("parses addressable steps and recording query values", () => {
     assert.equal(parseDemoStep("idle"), "idle");
     assert.equal(parseDemoStep("checking"), "checking");
