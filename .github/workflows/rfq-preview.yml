@@ -1,44 +1,42 @@
-name: Package RFQ preview for browser QA
+name: Review the RFQ preview in desktop and phone-width Chrome
 on:
   push:
     branches: [qa/rfq-preview-100fa2e]
-
 permissions:
   contents: read
-
+  actions: read
 jobs:
-  preview:
+  browser:
     runs-on: windows-latest
-    timeout-minutes: 12
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 100fa2e8d88412c49ae593ba293683ee4ef6fdb6
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - run: npm ci
-      - run: npm test
-      - run: npm run lint
-      - run: npm exec -- next typegen
-      - run: npm run typecheck
-      - name: Package the production server for the local preview
-        shell: pwsh
-        run: |
-          $config = Get-Content -Raw -LiteralPath next.config.ts
-          $marker = 'reactStrictMode: true,'
-          if (-not $config.Contains($marker)) { throw 'Unexpected Next.js configuration' }
-          $config.Replace($marker, 'output: "standalone", reactStrictMode: true,') | Set-Content -LiteralPath next.config.ts
-          npm run build
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          Copy-Item -LiteralPath public -Destination .next/standalone/public -Recurse
-          Copy-Item -LiteralPath .next/static -Destination .next/standalone/.next/static -Recurse
-          tar.exe -czf rfq-preview.tgz -C .next/standalone .
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          Get-FileHash rfq-preview.tgz -Algorithm SHA256
-      - uses: actions/upload-artifact@v4
+      - uses: actions/download-artifact@v4
         with:
           name: rfq-preview-100fa2e
-          path: rfq-preview.tgz
-          retention-days: 1
+          run-id: 45296408525
+          github-token: ${{ github.token }}
+          path: .qa-download
+      - name: Open the previously built preview
+        shell: pwsh
+        run: |
+          $archive = '.qa-download/rfq-preview.tgz'
+          if ((Get-FileHash $archive -Algorithm SHA256).Hash -ne 'B47F0AA7C68D38FCDCEB2EA7D13E0FB33C139E0AC272451AAED8B04D801E2A55') { throw 'Wrong preview artifact' }
+          New-Item -ItemType Directory -Path .qa-app | Out-Null
+          tar.exe -xzf $archive -C .qa-app
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          npm install --prefix .qa-tools --no-audit --no-fund --ignore-scripts playwright-core@1
+      - name: Exercise desktop and mobile review flows in Chrome
+        run: node qa/review-rfq.cjs
+      - name: Save screenshots and test observations
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rfq-browser-evidence
+          path: qa-evidence/
+          retention-days: 3
