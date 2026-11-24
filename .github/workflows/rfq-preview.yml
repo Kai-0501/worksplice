@@ -1,0 +1,43 @@
+name: Package RFQ preview for browser QA
+on:
+  push:
+    branches: [qa/rfq-preview-100fa2e]
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 100fa2e8d88412c49ae593ba293683ee4ef6fdb6
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm ci
+      - run: npm test
+      - run: npm run lint
+      - run: npm run typecheck
+      - name: Package the production server for the local preview
+        shell: pwsh
+        run: |
+          $config = Get-Content -Raw -LiteralPath next.config.ts
+          $marker = 'reactStrictMode: true,'
+          if (-not $config.Contains($marker)) { throw 'Unexpected Next.js configuration' }
+          $config.Replace($marker, 'output: "standalone", reactStrictMode: true,') | Set-Content -LiteralPath next.config.ts
+          npm run build
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          Copy-Item -LiteralPath public -Destination .next/standalone/public -Recurse
+          Copy-Item -LiteralPath .next/static -Destination .next/standalone/.next/static -Recurse
+          tar.exe -czf rfq-preview.tgz -C .next/standalone .
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          Get-FileHash rfq-preview.tgz -Algorithm SHA256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rfq-preview-100fa2e
+          path: rfq-preview.tgz
+          retention-days: 1
