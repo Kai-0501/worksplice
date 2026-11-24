@@ -16,7 +16,11 @@ const assertState = (page, name, timeout = 10000) =>
 const getState = page => page.getByTestId('demo-root').getAttribute('data-demo-state');
 const button = (page, name) => page.getByRole('button', {name, exact:true});
 const screenshot = async (page, name) => {
-  await page.screenshot({path:path.join(shots, name + '.jpg'), type:'jpeg', quality:76, animations:'disabled'});
+  const bytes=await page.screenshot({path:path.join(shots, name + '.jpg'), type:'jpeg', quality:76, animations:'disabled'});
+  const b64=bytes.toString('base64');
+  console.log('::group::Preview image '+name);
+  for (let i=0;i<b64.length;i+=1800) console.log('RFQ-SHOT '+name+' '+i+' '+b64.slice(i,i+1800));
+  console.log('::endgroup::');
 };
 const record = (key, val) => { report[key] = val; console.log('QA ' + key + ' ' + JSON.stringify(val)); };
 
@@ -49,7 +53,7 @@ async function runInteractive(browser, mobile) {
   page.setDefaultTimeout(10000);
   try {
     await page.goto(origin);
-    if (mobile) await page.getByRole('button',{name:/menu/i}).click();
+    if (mobile) await page.locator('header summary').filter({hasText:'Menu'}).tap();
     await page.getByRole('link',{name:'Demo',exact:true}).click();
     await assertState(page,'idle');
     assert.ok(await button(page,'Reset').isDisabled());
