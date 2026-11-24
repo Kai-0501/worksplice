@@ -3,7 +3,8 @@ const path = require('node:path');
 const assert = require('node:assert/strict');
 const { spawn } = require('node:child_process');
 const { chromium } = require(path.resolve('.qa-tools/node_modules/playwright-core'));
-const origin = 'http://127.0.0.1:43180';
+const localOrigin = 'http://127.0.0.1:43180';
+const origin = process.env.RFQ_ORIGIN ?? localOrigin;
 const demo = origin + '/demo/rfq-intake';
 const message = 'Hi Daniel,\n\nCould you confirm the delivery date for Tuas?\nPlease include any certification requirement.';
 const fields = ['Apex Industrial Pte Ltd', 'Fabricated mounting brackets', '250 pcs', 'SS316', 'Brushed', 'MBR-204 Rev C', 'Tuas', 'Friday'];
@@ -166,8 +167,8 @@ async function checkModes(browser){
 }
 
 async function main(){
-  const server=spawn(process.execPath,['server.js'],{cwd:path.resolve('.qa-app'),env:{...process.env,PORT:'43180',HOSTNAME:'127.0.0.1',NODE_ENV:'production'},windowsHide:true,stdio:['ignore','pipe','pipe']});
-  server.stdout.on('data',b=>process.stdout.write(b));server.stderr.on('data',b=>process.stderr.write(b));
+  const server=origin===localOrigin ? spawn(process.execPath,['server.js'],{cwd:path.resolve('.qa-app'),env:{...process.env,PORT:'43180',HOSTNAME:'127.0.0.1',NODE_ENV:'production'},windowsHide:true,stdio:['ignore','pipe','pipe']}) : null;
+  server?.stdout.on('data',b=>process.stdout.write(b));server?.stderr.on('data',b=>process.stderr.write(b));
   let browser;
   try{
     let up=false;
@@ -176,13 +177,14 @@ async function main(){
     const candidate=['C:/Program Files/Google/Chrome/Application/chrome.exe','C:/Program Files (x86)/Google/Chrome/Application/chrome.exe'].find(p=>fs.existsSync(p));
     assert.ok(candidate,'Chrome is missing on the runner');
     browser=await chromium.launch({executablePath:candidate,headless:true,args:['--disable-background-timer-throttling']});
+    record('target',demo);
     record('browser',browser.version());
     await runInteractive(browser,false);
     await runInteractive(browser,true);
     await checkModes(browser);
   } finally {
     if(browser) await browser.close();
-    server.kill();
+    server?.kill();
     fs.writeFileSync(path.join(shots,'report.json'),JSON.stringify(report,null,2)+'\n');
   }
 }
